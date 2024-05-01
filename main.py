@@ -4,10 +4,11 @@ from motors import Motors
 from radio import Radio, Controller
 from servos import Servos
 import logging
+import lcd
 
 
 logging.basicConfig(
-  level    = logging.DEBUG,
+  level    = logging.INFO,
   format   = "%(asctime)s [%(levelname)s] %(message)s",
   handlers = [
     logging.StreamHandler(sys.stdout),
@@ -28,18 +29,17 @@ ENB = 13
 motors     = Motors(ENA, IN1, IN2, ENB, IN3, IN4)
 servos     = Servos()
 radio      = Radio()
-controller = Controller(radio, motors, servos)
+controller = Controller(motors, servos)
+
 
 
 if __name__ == '__main__':
-  
   try:
-    servos.init()
-    radio.start()
-
-    logging.info("App started")
+    logging.info("Wall-e started")
     while True:
-      controller.run()
+      commands = radio.receive()
+      controller.process(commands)
+      time.sleep(0.01)
       
   except KeyboardInterrupt:
     logging.info("Exiting...")

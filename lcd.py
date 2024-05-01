@@ -15,13 +15,13 @@ draw  = ImageDraw.Draw(image)
 
 barSpace  = 10
 barHeight = 12
-x=0
+x=128
 h=0
-for a in range(3):
-  h = x + barHeight
-  draw.rectangle((x, 0, h, disp.height), outline=255, fill=255)
-  x += barHeight + barSpace
 
-# Display image
+for a in range(3):
+  h = x - barHeight
+  draw.rectangle((x, 0, h, disp.height), outline=255, fill=255)
+  x -= barHeight + barSpace
+  
 disp.image(image)
 disp.display()

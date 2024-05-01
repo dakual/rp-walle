@@ -21,10 +21,9 @@ class Servos:
   ]
 
   def __init__(self):
-    self.servoKit = ServoKit(channels=16)
-
-  def init(self):
     logger.info("Servo init")
+
+    self.servoKit = ServoKit(channels=16)
 
     for index, servo in enumerate(self.servoSettings):
       self.servoKit.servo[index].set_pulse_width_range(servo[0] , servo[1])
@@ -55,14 +54,14 @@ class Servos:
       
       self.servoKit.servo[0].angle = mapLeft
       self.currentPositions[0]     = mapLeft
-      logger.info(f"---SERVO-LEFT-ARM, pos: {pos}, mapped: {mapLeft}")
+      logger.debug(f"---SERVO-LEFT-ARM, pos: {pos}, mapped: {mapLeft}")
     elif arm ==  "right":
       if self.currentPositions[1] == mapRight:
         return
       
       self.servoKit.servo[1].angle = mapRight
       self.currentPositions[1]     = mapRight
-      logger.info(f"---SERVO-RIGHT-ARM, pos: {pos}, mapped: {mapLeft}")
+      logger.debug(f"---SERVO-RIGHT-ARM, pos: {pos}, mapped: {mapLeft}")
     elif arm ==  "both":
       if self.currentPositions[0] == mapLeft and self.currentPositions[1] == mapRight:
         return
@@ -71,7 +70,7 @@ class Servos:
       self.servoKit.servo[1].angle = mapRight
       self.currentPositions[0]     = mapLeft
       self.currentPositions[1]     = mapRight
-      logger.info(f"---SERVO-BOTH-ARM, pos: {pos}, mappedLeft: {mapLeft}, mappedRight: {mapRight}")
+      logger.debug(f"---SERVO-BOTH-ARM, pos: {pos}, mappedLeft: {mapLeft}, mappedRight: {mapRight}")
 
   def neckControl(self, neck="both", pos=0):
     mapBottom = self.servoDirMap(2, pos)
@@ -83,14 +82,14 @@ class Servos:
       
       self.servoKit.servo[2].angle = mapBottom
       self.currentPositions[2]     = mapBottom
-      logger.info(f"---SERVO-BOTTOM-NECK, pos: {pos}, mapped: {mapBottom}")
+      logger.debug(f"---SERVO-BOTTOM-NECK, pos: {pos}, mapped: {mapBottom}")
     elif neck ==  "top":
       if self.currentPositions[3] == mapTop:
         return
       
       self.servoKit.servo[3].angle = mapTop
       self.currentPositions[3]     = mapTop
-      logger.info(f"---SERVO-TOP-NECK, pos: {pos}, mapped: {mapTop}")
+      logger.debug(f"---SERVO-TOP-NECK, pos: {pos}, mapped: {mapTop}")
     elif neck ==  "both":
       if self.currentPositions[2] == mapBottom and self.currentPositions[3] == mapTop:
         return
@@ -99,7 +98,7 @@ class Servos:
       self.servoKit.servo[3].angle = mapTop
       self.currentPositions[2]     = mapBottom
       self.currentPositions[3]     = mapTop
-      logger.info(f"---SERVO-BOTH-NECK, pos: {pos}, mappedBottom: {mapBottom}, mappedTop: {mapTop}")
+      logger.debug(f"---SERVO-BOTH-NECK, pos: {pos}, mappedBottom: {mapBottom}, mappedTop: {mapTop}")
 
   def headControl(self, pos=0):
     mapped = self.servoDirMap(4, pos)
@@ -109,7 +108,7 @@ class Servos:
     
     self.servoKit.servo[4].angle = mapped
     self.currentPositions[4]     = mapped
-    logger.info(f"---SERVO-HEAD, pos: {pos}, mapped: {mapped}")
+    logger.debug(f"---SERVO-HEAD, pos: {pos}, mapped: {mapped}")
 
   def eyeControl(self, eye="both", pos=0):
     mapLeft  = self.servoDirMap(5, pos)
@@ -121,14 +120,14 @@ class Servos:
       
       self.servoKit.servo[5].angle = mapLeft
       self.currentPositions[5]     = mapLeft
-      logger.info(f"---SERVO-LEFT-EYE, pos: {pos}, mapped: {mapLeft}")
+      logger.debug(f"---SERVO-LEFT-EYE, pos: {pos}, mapped: {mapLeft}")
     elif eye ==  "right":
       if self.currentPositions[6] == mapRight:
         return
       
       self.servoKit.servo[6].angle = mapRight
       self.currentPositions[6]     = mapRight
-      logger.info(f"---SERVO-RIGHT-EYE, pos: {pos}, mapped: {mapRight}")
+      logger.debug(f"---SERVO-RIGHT-EYE, pos: {pos}, mapped: {mapRight}")
     elif eye ==  "both":
       if self.currentPositions[5] == mapLeft and self.currentPositions[6] == mapRight:
         return
@@ -137,7 +136,7 @@ class Servos:
       self.servoKit.servo[6].angle = mapRight
       self.currentPositions[5]     = mapLeft
       self.currentPositions[6]     = mapRight
-      logger.info(f"---SERVO-BOTH-EYE, pos: {pos}, mappedLeft: {mapLeft}, mappedRight: {mapRight}")
+      logger.debug(f"---SERVO-BOTH-EYE, pos: {pos}, mappedLeft: {mapLeft}, mappedRight: {mapRight}")
 
   def eyebrowControl(self, eye="both", pos=0):
     mapLeft  = self.servoDirMap(7, pos)
@@ -149,14 +148,14 @@ class Servos:
       
       self.servoKit.servo[7].angle = mapLeft
       self.currentPositions[7]     = mapLeft
-      logger.info(f"---SERVO-LEFT-EYEBROW, pos: {pos}, mapped: {mapLeft}")
+      logger.debug(f"---SERVO-LEFT-EYEBROW, pos: {pos}, mapped: {mapLeft}")
     elif eye ==  "right":
       if self.currentPositions[8] == mapRight:
         return
       
       self.servoKit.servo[8].angle = mapRight
       self.currentPositions[8]     = mapRight
-      logger.info(f"---SERVO-RIGHT-EYEBROW, pos: {pos}, mapped: {mapRight}")
+      logger.debug(f"---SERVO-RIGHT-EYEBROW, pos: {pos}, mapped: {mapRight}")
     elif eye ==  "both":
       if self.currentPositions[7] == mapLeft and self.currentPositions[8] == mapRight:
         return
@@ -165,7 +164,7 @@ class Servos:
       self.servoKit.servo[8].angle = mapRight
       self.currentPositions[7]     = mapLeft
       self.currentPositions[8]     = mapRight
-      logger.info(f"---SERVO-BOTH-EYEBROW, pos: {pos}, mappedLeft: {mapLeft}, mappedRight: {mapRight}")
+      logger.debug(f"---SERVO-BOTH-EYEBROW, pos: {pos}, mappedLeft: {mapLeft}, mappedRight: {mapRight}")
 
 
 

@@ -61,7 +61,9 @@ class Motors:
     GPIO.output(self.EN3, GPIO.LOW)
     GPIO.output(self.EN4, GPIO.HIGH)
 
-    self.setSpeed(100)
+    for i in range(int(speed/2), speed):
+      self.setSpeed(i)
+      time.sleep(0.005)
 
     logging.info(f"---MOTORS-FORWARD, speed: 100")
     
@@ -77,7 +79,9 @@ class Motors:
     GPIO.output(self.EN3, GPIO.HIGH)
     GPIO.output(self.EN4, GPIO.LOW)
 
-    self.setSpeed(100)
+    for i in range(int(speed/2), speed):
+      self.setSpeed(i)
+      time.sleep(0.005)
 
     logging.info(f"---MOTORS-BACKWARD, speed: 100")
 
